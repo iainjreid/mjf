@@ -7,9 +7,8 @@ on:
   push:
     branches:
       - master
-  tag:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   build:

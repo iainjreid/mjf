@@ -1,0 +1,32 @@
+{
+  "name": "mjf",
+  "version": "0.0.0",
+  "description": "No nonsense JSON formatter",
+  "keywords": [
+    "json",
+    "format",
+    "formatter",
+    "formatting",
+    "json-format",
+    "json-formatter",
+    "json-formatting"
+  ],
+  "author": "Iain Reid <iainreid382@gmail.com> (https://chaff.land)",
+  "homepage": "https://github.com/iainreid820/mjf#readme",
+  "license": "MIT",
+  "main": "lib/mjf.js",
+  "files": [
+    "bin/mjf.js",
+    "lib/mjf.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iainreid820/mjf.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/iainreid820/mjf/issues"
+  }
+}

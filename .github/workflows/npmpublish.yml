@@ -25,7 +25,6 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
-    if: github.event == 'tag'
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -33,5 +32,6 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm publish
+        if: github.event == 'tag'
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

@@ -14,17 +14,16 @@
   "author": "Iain Reid <iainreid382@gmail.com> (https://chaff.land)",
   "homepage": "https://github.com/iainreid820/mjf#readme",
   "license": "MIT",
-  "main": "lib/mjf.js",
+  "bin": "bin/mjf",
   "files": [
-    "bin/mjf.js",
-    "lib/mjf.js"
+    "bin/mjf"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iainreid820/mjf.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Warn: no tests\""
   },
   "bugs": {
     "url": "https://github.com/iainreid820/mjf/issues"

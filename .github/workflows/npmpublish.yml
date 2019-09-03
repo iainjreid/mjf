@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+  release:
     tags:
       - 'v*'
 
@@ -31,6 +32,6 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm publish
-        if: github.event == 'tag'
+        if: github.event == 'release'
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

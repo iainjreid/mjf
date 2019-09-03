@@ -1,12 +1,6 @@
 name: Node.js Package
 
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
   release:
     branches:
       - master
@@ -32,6 +26,5 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm publish
-        if: github.event == 'release'
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

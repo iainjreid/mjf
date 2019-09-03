@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const fs = require("fs");
+const util = require("util");
+
+if (process.stdin.isTTY) {
+  main(process.argv.splice(2));
+} else {
+  let data = "";
+
+  process.stdin.on("readable", function () {
+    data += this.read() || "";
+  });
+
+  process.stdin.on("end", () => {
+    main(data.split("\n").filter(_ => _));
+  });
+}
+
+function main(paths) {
+  console.log(paths);
+
+  Promise.resolve(paths)
+    .then((paths) => {
+      if (paths.some((path) => !path.endsWith(".json"))) {
+        return Promise.reject("All files must have a \".json\" extension");
+      }
+
+      return paths;
+    })
+    .then((_) => Promise.all(_.map(readFile)))
+    .then((_) => Promise.all(_.map(formatFile)))
+    .then((_) => Promise.all(_.map(writeFile)))
+    .catch((msg) => {
+      console.log(msg);
+      process.exit(1);
+    });
+}
+
+function readFile(path) {
+  return util.promisify(fs.readFile)(path)
+    .then((data) => ({ path, data: JSON.parse(data) }))
+    .catch(() => `Failed to read file: ${path}`);
+}
+
+function formatFile({ path, data }) {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve({ path, data: JSON.stringify(data, null, 2) });
+    } catch {
+      reject(`Failed to format file: ${path}`)
+    }
+  })
+}
+
+function writeFile({ path, data }) {
+  return util.promisify(fs.writeFile)(path, data)
+    .then(() => ({ path, data }))
+    .catch(() => `Failed to write file: ${path}`);
+}

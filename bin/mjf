@@ -20,8 +20,6 @@ if (process.stdin.isTTY) {
 }
 
 function main(paths) {
-  console.log(paths);
-
   Promise.resolve(paths)
     .then((paths) => {
       if (paths.some((path) => !path.endsWith(".json"))) {
